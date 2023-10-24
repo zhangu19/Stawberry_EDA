@@ -954,6 +954,24 @@ strwb_survey_mkt <- strwb_survey_mkt |> select(all_of(mkt1))
 
 
 ```
+Chemical Usage in Strawberry Production
+Strawberries, like many crops, may undergo various chemical treatments to ensure their growth, quality, and protection against pests. However, some of these chemicals may be harmful or even carcinogenic. It's essential to analyze which chemicals are used.
+```{r}
+
+matching_rows <- strwb_survey_chem %>%
+  filter(temp43 %in% c(" HERBICIDE: (GLYPHOSATE ISO. SALT = 103601)", " HERBICIDE: (GLYPHOSATE POT. SALT = 103613)"))
+
+num_matching_rows <- nrow(matching_rows)
+
+# If there are matching rows, check the values in the selected columns
+if (num_matching_rows > 0) {
+  sample_values <- head(matching_rows, 5)
+} else {
+  sample_values <- "No matching rows found."
+}
+
+sample_values
+```
 
 <p style="page-break-before: always"></p>
 
